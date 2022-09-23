@@ -12,13 +12,16 @@ const Home: NextPage = () => {
         <meta name="description" content="The roundest pokemon!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-        <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
-          Roundest <span className="text-purple-300">Pokemon</span> App
-        </h1>
-        <p className="text-2xl text-gray-700">This stack uses:</p>
-        <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3"></div>
+      <main>
+        <div className="h-screen w-screen flex flex-col justify-center items-center">
+          <div className="text-2xl text-center">Which Pokémon is Rounder?</div>
+          <div className="p-2"></div>
+          <div className="bg-pink-400 border rounded p-8 flex justify-between items-center max-w-2xl">
+            <div className="w-16 h-16 bg-red-200"></div>
+            <div className="p-8">Vs</div>
+            <div className="w-16 h-16 bg-red-200"></div>
+          </div>
+        </div>
       </main>
     </>
   );
