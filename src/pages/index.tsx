@@ -10,7 +10,6 @@ export default function Home() {
   const firstPokemon = trpc.useQuery(["get-pokemon-by-id", { id: first }]);
   const secondPokemon = trpc.useQuery(["get-pokemon-by-id", { id: second }]);
 
-  // bombs us out early if they're loading
   if (firstPokemon.isLoading || secondPokemon.isLoading) return null;
 
   return (
@@ -20,7 +19,7 @@ export default function Home() {
       <div className="border rounded p-8 flex justify-between items-center max-w-2xl">
         <div className="w-64 h-64 flex flex-col">
           <img
-            src={firstPokemon?.data?.sprites.front_default!}
+            src={firstPokemon.data?.sprites.front_default!}
             className="w-full"
           />
           <div className="text-xl text-center capitalize mt-[-2rem]">
@@ -41,3 +40,4 @@ export default function Home() {
       </div>
     </div>
   );
+}
