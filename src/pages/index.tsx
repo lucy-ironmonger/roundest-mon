@@ -1,9 +1,11 @@
 import { getOptionsForVote } from "@/utils/getRandomPokemon";
 import { trpc } from "@/utils/trpc";
-import { useMemo } from "react";
+import { useState } from "react";
 
 export default function Home() {
-  const [first, second] = useMemo(() => getOptionsForVote(), []);
+  const [ids, updateIds] = useState(() => getOptionsForVote());
+
+  const [first, second] = ids;
 
   const firstPokemon = trpc.useQuery(["get-pokemon-by-id", { id: first }]);
   console.log(firstPokemon.data);
@@ -19,3 +21,10 @@ export default function Home() {
     </div>
   );
 }
+
+// Warning: Text content did not match. Server: "207" Client: "107"
+// The useState runs on the server AND the client, so they have different default values
+// The quick fix is to have :
+
+// export getServerSideProps - in there defining the defaults and passing those in as props to Home
+// and only updating after a vote
