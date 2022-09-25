@@ -4,11 +4,17 @@ import { useState } from "react";
 
 export default function Home() {
   const [ids, updateIds] = useState(() => getOptionsForVote());
-
   const [first, second] = ids;
+
+  const btn = "bg-purple-500 border rounded mt-4";
 
   const firstPokemon = trpc.useQuery(["get-pokemon-by-id", { id: first }]);
   const secondPokemon = trpc.useQuery(["get-pokemon-by-id", { id: second }]);
+
+  const voteForRoundest = (selected: number) => {
+    // persist data
+    updateIds(getOptionsForVote());
+  };
 
   if (firstPokemon.isLoading || secondPokemon.isLoading) return null;
 
@@ -16,7 +22,7 @@ export default function Home() {
     <div className="h-screen w-screen flex flex-col justify-center items-center">
       <div className="text-2xl text-center">Which Pokémon is Rounder?</div>
       <div className="p-2" />
-      <div className="border rounded p-8 flex justify-between items-center max-w-2xl">
+      <div className="p-8 flex justify-between items-center max-w-2xl">
         <div className="w-64 h-64 flex flex-col">
           <img
             src={firstPokemon.data?.sprites.front_default!}
@@ -25,6 +31,7 @@ export default function Home() {
           <div className="text-xl text-center capitalize mt-[-2rem]">
             {firstPokemon.data?.name}
           </div>
+          <button className={btn}>Rounder</button>
         </div>
         <div className="p-8">Vs</div>
         <div className="w-64 h-64 flex flex-col">
@@ -35,6 +42,7 @@ export default function Home() {
           <div className="text-xl text-center capitalize mt-[-2rem]">
             {secondPokemon.data?.name}
           </div>
+          <button className={btn}>Rounder</button>
         </div>
         <div className="p-2" />
       </div>
