@@ -30,7 +30,14 @@ export default function Home() {
           <div className="text-xl text-center capitalize mt-[-2rem]">
             {firstPokemon.data?.name}
           </div>
-          <button className={btn}>Rounder</button>
+          <button
+            className={btn}
+            onClick={() => {
+              voteForRoundest(first);
+            }}
+          >
+            Rounder
+          </button>
         </div>
         <div className="p-8">Vs</div>
         <div className="w-64 h-64 flex flex-col">
@@ -41,7 +48,14 @@ export default function Home() {
           <div className="text-xl text-center capitalize mt-[-2rem]">
             {secondPokemon.data?.name}
           </div>
-          <button className={btn}>Rounder</button>
+          <button
+            className={btn}
+            onClick={() => {
+              voteForRoundest(second);
+            }}
+          >
+            Rounder
+          </button>
         </div>
         <div className="m-2" />
       </div>
